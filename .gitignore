@@ -1,2 +1,7 @@
 *.class
 *.log
+
+
+ScalaIntro/project/target/
+ScalaIntro/target/
+ScalaIntro/.idea/
