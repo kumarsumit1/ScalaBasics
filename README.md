@@ -139,10 +139,10 @@ http://ozukun.blogspot.com/2016/04/odi-12c-creating-mysql-master-repository.html
 
 
 
-#Reference
-1. [ First Steps to Scala ] ( https://www.artima.com/scalazine/articles/steps.html )
-2. [ Another Tour of Scala ] ( https://www.naildrivin5.com/scalatour/wiki_pages/MainPage/ )
-3. [ PythonToScala ] ( https://wrobstory.gitbooks.io/python-to-scala/content/index.html )
+# Reference
+1. [ First Steps to Scala ]( https://www.artima.com/scalazine/articles/steps.html )
+2. [ Another Tour of Scala ]( https://www.naildrivin5.com/scalatour/wiki_pages/MainPage/ )
+3. [ PythonToScala ]( https://wrobstory.gitbooks.io/python-to-scala/content/index.html )
 
 https://github.com/deanwampler/spark-scala-tutorial#use-ide
 
