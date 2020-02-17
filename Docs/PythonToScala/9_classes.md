@@ -210,7 +210,7 @@ scala> car.wheels = 5
 val $ires4 = car.wheels
 ```
 
-Staticmethods in Scala are handled via "companion objects" for classes, which are named the same as the class itself. Objects are an entire topic of study for the Scala language- I am just touching on them as they related to Python's `staticmethod`, but I recommend that you do some reading on how objects are used in Scala. Also demonstrated in this example is how object fields can be used to mirror Python's class-level attributes:
+Static methods in Scala are handled via "companion objects" for classes, which are named the same as the class itself. Objects are an entire topic of study for the Scala language- I am just touching on them as they related to Python's `staticmethod`, but I recommend that you do some reading on how objects are used in Scala. Also demonstrated in this example is how object fields can be used to mirror Python's class-level attributes:
 
 ##### Python
 ```python

@@ -22,23 +22,23 @@ Any,Anyref
 There are two ways to create a launching point for your application: define an object that extends the App trait, or define an object with a properly defined main method.
 For the first solution, define an object that extends the App trait. Using this approach, the following code creates a simple but complete Scala application:
 
-object Hello extends App {\
-    if (args.length == 1)\
-        println(s"Hello, ${args(0)}")\
-    else\
-        println("I didn't get your name.")\
-}
+	object Hello extends App {
+		if (args.length == 1)
+			println(s"Hello, ${args(0)}")
+		else\
+			println("I didn't get your name.")
+	}
 
 The code in the body of the object is automatically run, just as if it were inside a main method.When using this approach, any command-line arguments to your application are implicitly available through an args object, which is inherited from the App trait. The args object is an instance of Array[String], just as if you had declared a main method yourself. 
 
 
 The second approach to launching an application is to manually implement a main method with the correct signature in an object, in a manner similar to Java:
 
-object Hello2 {\
-   def main(args: Array[String]): Unit = {\
-    println("Hello, world!")\
-  }\
-}
+	object Hello2 {
+	   def main(args: Array[String]): Unit = {
+		println("Hello, world!")
+	  }
+	}
 
 ***Note*** that in both cases, Scala applications are launched from an object, not a class. 
 
@@ -51,16 +51,17 @@ val multiplier = (i:Int) => i * 10.
 Currying is the technique of transforming a function with multiple arguments into a function with just one argument. 
 The single argument is the value of the first argument from the original function and the function returns another 
 single argument function uncurrying :
-def add(x:int,y:int):int = {
-x +y
-}
+
+	def add(x:int,y:int):int = {
+	x +y
+	}
 
 As Scala supports curried functions, you can turn this into it’s curried version simply by separating out the arguments
 currying
 
-def add(x:int)(y:int):int = {
-x +y
-}
+	def add(x:int)(y:int):int = {
+	x +y
+	}
 
 
 ### Higher Order Function :
@@ -75,28 +76,29 @@ Its a class used for pattern mathching in scala.
 Scala extractor is an object which has a method called unapply as one of its members. The unapply method matches a value and take it apart. The extractor also defines apply method for building values.
 
 Consider an example of extracting first name and last name that uses space as separator.
-object firstName {
-  def main(args: Array[String]) {
- 
-    println("Apply method : " + apply("Steve", "Smith"));
-    println("Unapply method : " + unapply("Steve Smith"));
-    println("Unapply method : " + unapply("Rob"));
- 
-  }
- 
-  def apply(fname: String, lname: String) = {
-    fname + " " + lname
-  }
- 
-  def unapply(s: String): Option[(String, String)] = {
-    val pts = s split " "
-    if (pts.length == 2) {
-      Some(pts(0), pts(1))
-    } else {
-      None
-    }
-  }
-}
+
+		object firstName {
+		  def main(args: Array[String]) {
+		 
+			println("Apply method : " + apply("Steve", "Smith"));
+			println("Unapply method : " + unapply("Steve Smith"));
+			println("Unapply method : " + unapply("Rob"));
+		 
+		  }
+		 
+		  def apply(fname: String, lname: String) = {
+			fname + " " + lname
+		  }
+		 
+		  def unapply(s: String): Option[(String, String)] = {
+			val pts = s split " "
+			if (pts.length == 2) {
+			  Some(pts(0), pts(1))
+			} else {
+			  None
+			}
+		  }
+		}
 The object firstName defines two methods apply and unapply. The apply method turns into an object that accepts the arguments specified within the parenthesis and builds the value as specified in the method. The first and last name combined together with a space in between is returned.
 
 
@@ -104,12 +106,75 @@ The unapply method returns firstname object into an extractor and breaks the arg
 
 ### Monad
 
-### Object and Class - 
+### Object and Class :
 
-### Traits - Traits in scala is like interface in java.  We can achieve multiple inheritance using traits in Scala.	
+##### Singleton Objects in Scala
+
+There is no ***static keyword*** in Scala, instead we have ***singleton objects***. All we need is to use object keyword to create a singleton object. We can call it’s methods directly, we can’t pass parameters to its primary constructor. 
+
+*No object is required to call methods declared inside singleton object.Methods declared inside Singleton Object are accessible globally. A singleton object can extend classes and traits.*
 
 
-### Option in scala - It is used to check the return value of the function. It returns two value None and Some.
+##### Inbuilt objects in Scala library
+
+There are many inbuilt objects in scala library one among them is the Console object which reads the values and prints on the terminal.
+
+		object Cons {
+		def main(args:Array[String]) = {
+			Console.println("Enter a number :");
+			val num = Console.readInt;
+			Console.println("Entered Number is :"+num)
+			}
+		}
+
+##### Companion Classes and Objects in Scala
+
+In scala, when you have a class with same name as singleton object, it is called companion class and the singleton object is called companion object.
+
+The companion class and its companion object both must be defined in the same source file.
+
+ A companion object differs from other objects as it has access rights to the class/trait that other objects do not. In particular it can access methods and fields that are private in the class/trait.
+
+
+##### Scala Case Classes and Case Object
+Scala case classes are just regular classes which are ***immutable by default and decomposable through pattern matching***.
+It uses equal method to compare instance structurally. **It does not use new keyword to instantiate object.*
+All the parameters listed in the case class are ***public and immutable by default***.
+
+    case class CaseClass(a:Int, b:Int)  
+      
+    object MainObject{  
+        def main(args:Array[String]){  
+            var c =  CaseClass(10,10)       // Creating object of case class  
+            println("a = "+c.a)               // Accessing elements of case class  
+            println("b = "+c.b)  
+        }  
+    }  
+	
+????? Case Class and Pattern Matching  ??????
+In general Case Class has :
+    overwriddend toString method
+    hashCode based on murmur hash
+    Case object/Case class is serializable by default
+	Two object can be directly compared using ==
+
+
+Case objects vs Case classes
+
+Things that are missing in case objects.
+
+    Apply, Un-apply methods. We will see about this later
+    There are no copy methods since this is a singleton
+    No method for structural equality comparison
+    No constructor as well
+
+
+### Traits - 
+Traits in scala is like interface in java.  We can achieve multiple inheritance using traits in Scala.	
+
+
+### Option in scala - 
+It is used to check the return value of the function. It returns two value None and Some.
 
 
 ### Variable assignment
@@ -117,7 +182,7 @@ The unapply method returns firstname object into an extractor and breaks the arg
 
 ### Function definition
 
-
+Staticmethods in Scala are handled via "companion objects" for classes, which are named the same as the class itself. 
 
 ### loops
 
